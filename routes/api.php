@@ -27,4 +27,10 @@ use Illuminate\Support\Facades\Route;
 }
 */
 Route::post('/students', [StudentController::class, 'create']);
+/* Usage: Send with the Body as JSON, with format:
+{
+    "name": "SubjectName",
+    "school_year": "1", "2", "3" or "4"
+}
+*/
 Route::post('/subjects', [SubjectController::class, 'create']);
