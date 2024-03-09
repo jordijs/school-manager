@@ -19,7 +19,9 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-/* Usage: Send with the Body as JSON, with format:
+/* 
+CREATE NEW STUDENT
+Usage: Send with the Body as JSON, with format:
 {
     "name": "YourName",
     "surname": "YourSurname",
@@ -27,10 +29,23 @@ use Illuminate\Support\Facades\Route;
 }
 */
 Route::post('/students', [StudentController::class, 'create']);
-/* Usage: Send with the Body as JSON, with format:
+
+// GET ALL STUDENTS
+Route::get('/students', [StudentController::class, 'getAll']);
+
+/* 
+UPDATE DATA OF A STUDENT
+Usage: 
+1. Send the student ID to be edited as a parameter in the URL.
+2. Send the new data with the Body as JSON, with format:
 {
-    "name": "SubjectName",
-    "school_year": "1", "2", "3" or "4"
+    "name": "YourName",
+    "surname": "YourSurname",
+    "birthday": "YYYY-MM-DD"
 }
 */
+Route::put('/students/{id}', [StudentController::class, 'edit']);
+
 Route::post('/subjects', [SubjectController::class, 'create']);
+
+Route::get('/subjects', [SubjectController::class, 'getAll']);

@@ -32,4 +32,14 @@ class SubjectController extends Controller
             ], 422);
         }
     }
+
+    public function getAll()
+    {
+        $subjects = Subject::all();
+
+        return response([
+            'subjects' => $subjects,
+            'message' => 'Subjects retrieved successfully'
+        ], 200);
+    }
 }
