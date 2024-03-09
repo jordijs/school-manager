@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\StudentController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\SubjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,3 +27,4 @@ use Illuminate\Support\Facades\Route;
 }
 */
 Route::post('/students', [StudentController::class, 'create']);
+Route::post('/subjects', [SubjectController::class, 'create']);
