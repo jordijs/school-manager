@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+/* Usage: Send with the Body as JSON, with format:
+{
+    "name": "YourName",
+    "surname": "YourSurname",
+    "birthday": "YYYY-MM-DD"
+}
+*/
+Route::post('/students', [StudentController::class, 'create']);
