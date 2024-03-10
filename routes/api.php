@@ -46,6 +46,12 @@ Usage:
 */
 Route::put('/students/{id}', [StudentController::class, 'edit']);
 
+/*
+DELETE A STUDENT
+Usage: Send the student ID to be deleted as a parameter in the URL.
+*/
+Route::delete('/students/{id}', [StudentController::class, 'delete']);
+
 /* 
 CREATE NEW SUBJECT
 Usage: Send with the Body as JSON, with format:
@@ -70,3 +76,9 @@ Usage:
 }
 */
 Route::put('/subjects/{id}', [SubjectController::class, 'edit']);
+
+/*
+DELETE A SUBJECT
+Usage: Send the subject ID to be deleted as a parameter in the URL.
+*/
+Route::delete('/subjects/{id}', [SubjectController::class, 'delete']);

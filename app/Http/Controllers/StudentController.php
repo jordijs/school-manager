@@ -86,4 +86,20 @@ class StudentController extends Controller
             ], 404);
         }
     }
+
+    public function delete($id)
+    {
+        try {
+            $student = Student::findOrFail($id);
+            $student->delete();
+
+            return response([
+                'message' => 'Student deleted successfully'
+            ], 200);
+        } catch (ModelNotFoundException $exception) {
+            return response([
+                'message' => 'Student not found'
+            ], 404);
+        }
+    }
 }

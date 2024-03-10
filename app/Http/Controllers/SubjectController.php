@@ -80,4 +80,21 @@ class SubjectController extends Controller
         }
     }
 
+    public function delete($id)
+    {
+        try {
+            $subject = Subject::findOrFail($id);
+            
+            $subject->delete();
+
+            return response([
+                'message' => 'Subject deleted successfully'
+            ], 200);
+        } catch (ModelNotFoundException $exception) {
+            return response([
+                'message' => 'Subject not found',
+            ], 404);
+        }
+    }
+
 }
