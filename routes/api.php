@@ -34,6 +34,9 @@ Route::get('/students', [StudentController::class, 'getAll']);
 //GET GRADES OF A STUDENT
 Route::get('/students/{id}/grades', [StudentController::class, 'getGrades']);
 
+//GET MEDIAN GRADE OF A STUDENT
+Route::get('/students/{id}/grades/median', [StudentController::class, 'getMedianGrade']);
+
 /* 
 UPDATE DATA OF A STUDENT
 Usage: 

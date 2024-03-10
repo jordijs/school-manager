@@ -46,9 +46,9 @@ class StudentController extends Controller
         ], 200);
     }
 
-    public function edit (Request $request, $id)
+    public function edit(Request $request, $id)
     {
-        try{
+        try {
             $student = Student::findOrFail($id);
 
             try {
@@ -57,18 +57,18 @@ class StudentController extends Controller
                     'surname' => 'string|max:255',
                     'birthday' => 'date'
                 ]);
-    
-                if ($request->name){
+
+                if ($request->name) {
                     $student->name = $request->name;
                 }
-                if ($request->surname){
+                if ($request->surname) {
                     $student->surname = $request->surname;
                 }
-                if ($request->birthday){
-                $student->birthday = $request->birthday;
+                if ($request->birthday) {
+                    $student->birthday = $request->birthday;
                 }
                 $student->save();
-    
+
                 return response([
                     'student' => $student,
                     'message' => 'Student updated successfully'
@@ -79,7 +79,6 @@ class StudentController extends Controller
                     'message' => 'Validation failed'
                 ], 422);
             }
-        
         } catch (ModelNotFoundException $exception) {
             return response([
                 'message' => 'Student not found'
@@ -119,6 +118,30 @@ class StudentController extends Controller
                 'grades' => $grades,
                 'message' => 'Grades retrieved successfully'
             ], 200);
+        } catch (ModelNotFoundException $exception) {
+            return response([
+                'message' => 'Student not found'
+            ], 404);
+        }
+    }
+
+    public function getMedianGrade($id)
+    {
+        try {
+            $student = Student::findOrFail($id);
+            $grades = $student->grades;
+
+            if ($grades->isEmpty()) {
+                return response([
+                    'message' => 'No grades found for this student'
+                ], 404);
+            } else {
+                $median = $grades->average('grade');
+                return response([
+                    'median' => $median,
+                    'message' => 'Median retrieved successfully'
+                ], 200);
+            }
         } catch (ModelNotFoundException $exception) {
             return response([
                 'message' => 'Student not found'
