@@ -31,7 +31,7 @@ class StudentController extends Controller
         } catch (ValidationException $exception) {
             return response([
                 'errors' => $exception->errors(),
-                'message' => 'Validation failed'
+                'message' => 'Entered data is invalid'
             ], 422);
         }
     }
@@ -95,6 +95,29 @@ class StudentController extends Controller
 
             return response([
                 'message' => 'Student deleted successfully'
+            ], 200);
+        } catch (ModelNotFoundException $exception) {
+            return response([
+                'message' => 'Student not found'
+            ], 404);
+        }
+    }
+
+    public function getGrades($id)
+    {
+        try {
+            $student = Student::findOrFail($id);
+            $grades = $student->grades;
+
+            if ($grades->isEmpty()) {
+                return response([
+                    'message' => 'No grades found for this student'
+                ], 404);
+            }
+
+            return response([
+                'grades' => $grades,
+                'message' => 'Grades retrieved successfully'
             ], 200);
         } catch (ModelNotFoundException $exception) {
             return response([

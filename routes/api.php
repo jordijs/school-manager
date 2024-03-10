@@ -16,9 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 
 /* 
 CREATE NEW STUDENT
@@ -33,6 +30,9 @@ Route::post('/students', [StudentController::class, 'create']);
 
 // GET ALL STUDENTS
 Route::get('/students', [StudentController::class, 'getAll']);
+
+//GET GRADES OF A STUDENT
+Route::get('/students/{id}/grades', [StudentController::class, 'getGrades']);
 
 /* 
 UPDATE DATA OF A STUDENT
@@ -63,7 +63,7 @@ Usage: Send with the Body as JSON, with format:
 */
 Route::post('/subjects', [SubjectController::class, 'create']);
 
-// GET ALL STUDENTS
+// GET ALL SUBJECTS
 Route::get('/subjects', [SubjectController::class, 'getAll']);
 
 /*
