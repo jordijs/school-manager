@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GradeController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use Illuminate\Support\Facades\Route;
@@ -82,3 +83,14 @@ DELETE A SUBJECT
 Usage: Send the subject ID to be deleted as a parameter in the URL.
 */
 Route::delete('/subjects/{id}', [SubjectController::class, 'delete']);
+
+/*
+CREATE A GRADE
+Usage: Send with the Body as JSON, with format:
+{
+    "student_id": 0,
+    "subject_id": 0,
+    "grade": 0.00 (optional)
+}
+*/
+Route::post('/grades', [GradeController::class, 'create']);
