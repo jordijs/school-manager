@@ -46,6 +46,27 @@ Usage:
 */
 Route::put('/students/{id}', [StudentController::class, 'edit']);
 
+/* 
+CREATE NEW SUBJECT
+Usage: Send with the Body as JSON, with format:
+{
+    "name": "SubjectName",
+    "school_year": 1, 2, 3 or 4
+}
+*/
 Route::post('/subjects', [SubjectController::class, 'create']);
 
+// GET ALL STUDENTS
 Route::get('/subjects', [SubjectController::class, 'getAll']);
+
+/*
+UPDATE DATA OF A SUBJECT
+Usage:
+1. Send the subject ID to be edited as a parameter in the URL.
+2. Send the new data with the Body as JSON, with format:
+{
+    "name": "SubjectName",
+    "school_year": 1, 2, 3 or 4
+}
+*/
+Route::put('/subjects/{id}', [SubjectController::class, 'edit']);
