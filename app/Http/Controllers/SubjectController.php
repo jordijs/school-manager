@@ -25,7 +25,7 @@ class SubjectController extends Controller
             return response([
                 'subject' => $subject,
                 'message' => 'Subject created successfully'
-            ], 200);
+            ], 201);
         } catch (ValidationException $exception) {
             return response([
                 'errors' => $exception->errors(),

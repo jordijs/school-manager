@@ -27,7 +27,7 @@ class StudentController extends Controller
             return response([
                 'student' => $student,
                 'message' => 'Student created successfully'
-            ], 200);
+            ], 201);
         } catch (ValidationException $exception) {
             return response([
                 'errors' => $exception->errors(),
