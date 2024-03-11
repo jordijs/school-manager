@@ -125,7 +125,7 @@ class StudentController extends Controller
         }
     }
 
-    public function getMedianGrade($id)
+    public function getAverageGrade($id)
     {
         try {
             $student = Student::findOrFail($id);
@@ -136,10 +136,12 @@ class StudentController extends Controller
                     'message' => 'No grades found for this student'
                 ], 404);
             } else {
-                $median = $grades->average('grade');
+                $average = $grades->average('grade');
+                $roundedAverage = round($average, 2);
+                
                 return response([
-                    'median' => $median,
-                    'message' => 'Median retrieved successfully'
+                    'average' => $roundedAverage,
+                    'message' => 'Average retrieved successfully'
                 ], 200);
             }
         } catch (ModelNotFoundException $exception) {

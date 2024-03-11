@@ -97,4 +97,31 @@ class SubjectController extends Controller
         }
     }
 
+    public function getAverageGrade($id)
+    {
+        try {
+            $subject = Subject::findOrFail($id);
+            $grades = $subject->grades;
+
+            if ($grades->isEmpty()) {
+                return response([
+                    'message' => 'No grades found for this subject'
+                ], 404);
+            } else {
+                $average = $grades->average('grade');
+                $roundedAverage = round($average, 2);
+
+                return response([
+                    'average' => $roundedAverage,
+                    'message' => 'Average grade retrieved successfully'
+                ], 200);
+            }
+
+        } catch (ModelNotFoundException $exception) {
+            return response([
+                'message' => 'Subject not found'
+            ], 404);
+        }
+    }
+
 }

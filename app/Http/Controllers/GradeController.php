@@ -105,5 +105,17 @@ class GradeController extends Controller
         }
     }
 
+    public function getAverage() 
+    {
+        $average = Grade::all()->average('grade');
+
+        $roundedAverage = round($average, 2);
+
+        return response([
+            'average' => $roundedAverage,
+            'message' => 'Average retrieved successfully'
+        ], 200);
+    }
+
 
 }

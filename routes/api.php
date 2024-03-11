@@ -34,8 +34,8 @@ Route::get('/students', [StudentController::class, 'getAll']);
 //GET GRADES OF A STUDENT
 Route::get('/students/{id}/grades', [StudentController::class, 'getGrades']);
 
-//GET MEDIAN GRADE OF A STUDENT
-Route::get('/students/{id}/grades/median', [StudentController::class, 'getMedianGrade']);
+//GET AVERAGE GRADE OF A STUDENT
+Route::get('/students/{id}/grades/average', [StudentController::class, 'getAverageGrade']);
 
 /* 
 UPDATE DATA OF A STUDENT
@@ -69,6 +69,9 @@ Route::post('/subjects', [SubjectController::class, 'create']);
 // GET ALL SUBJECTS
 Route::get('/subjects', [SubjectController::class, 'getAll']);
 
+//GET AVERAGE GRADE OF A SUBJECT
+Route::get('/subjects/{id}/grades/average', [SubjectController::class, 'getAverageGrade']);
+
 /*
 UPDATE DATA OF A SUBJECT
 Usage:
@@ -100,6 +103,9 @@ Route::post('/grades', [GradeController::class, 'create']);
 
 // GET ALL GRADES
 Route::get('/grades', [GradeController::class, 'getAll']);
+
+//GET AVERAGE GRADE OF ALL STUDENTS
+Route::get('/grades/average', [GradeController::class, 'getAverage']);
 
 /*
 UPDATE DATA OF A GRADE
