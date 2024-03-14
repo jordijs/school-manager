@@ -31,7 +31,10 @@ Route::post('/students', [StudentController::class, 'create']);
 // GET ALL STUDENTS
 Route::get('/students', [StudentController::class, 'getAll']);
 
-// GET STUDENT
+/*
+GET STUDENT
+Usage: Send the student ID to be retrieved as a parameter in the URL.
+*/
 Route::get('/students/{id}', [StudentController::class, 'get']);
 
 //GET GRADES OF A STUDENT
@@ -69,7 +72,10 @@ Usage: Send with the Body as JSON, with format:
 */
 Route::post('/subjects', [SubjectController::class, 'create']);
 
-// GET SUBJECT
+/*
+GET SUBJECT
+Usage: Send the subject ID to be retrieved as a parameter in the URL.
+*/
 Route::get('/subjects/{id}', [SubjectController::class, 'get']);
 
 // GET ALL SUBJECTS
@@ -107,7 +113,10 @@ Usage: Send with the Body as JSON, with format:
 */
 Route::post('/grades', [GradeController::class, 'create']);
 
-// GET GRADE
+/*
+GET GRADE
+Usage: Send the grade ID to be retrieved as a parameter in the URL.
+*/
 Route::get('/grades/{id}', [GradeController::class, 'get']);
 
 // GET ALL GRADES
