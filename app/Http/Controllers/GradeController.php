@@ -38,6 +38,21 @@ class GradeController extends Controller
         }
     }
 
+    public function get($id)
+    {
+        try{
+            $grade = Grade::findOrFail($id);
+            return response([
+                'grade' => $grade,
+                'message' => 'Grade retrieved successfully'
+            ], 200);
+        } catch (ModelNotFoundException $exception) {
+            return response([
+                'message' => 'Grade not found'
+            ], 404);
+        }
+    }
+
     public function getAll()
     {
         $grades = Grade::all();

@@ -31,6 +31,9 @@ Route::post('/students', [StudentController::class, 'create']);
 // GET ALL STUDENTS
 Route::get('/students', [StudentController::class, 'getAll']);
 
+// GET STUDENT
+Route::get('/students/{id}', [StudentController::class, 'get']);
+
 //GET GRADES OF A STUDENT
 Route::get('/students/{id}/grades', [StudentController::class, 'getGrades']);
 
@@ -66,6 +69,9 @@ Usage: Send with the Body as JSON, with format:
 */
 Route::post('/subjects', [SubjectController::class, 'create']);
 
+// GET SUBJECT
+Route::get('/subjects/{id}', [SubjectController::class, 'get']);
+
 // GET ALL SUBJECTS
 Route::get('/subjects', [SubjectController::class, 'getAll']);
 
@@ -100,6 +106,9 @@ Usage: Send with the Body as JSON, with format:
 }
 */
 Route::post('/grades', [GradeController::class, 'create']);
+
+// GET GRADE
+Route::get('/grades/{id}', [GradeController::class, 'get']);
 
 // GET ALL GRADES
 Route::get('/grades', [GradeController::class, 'getAll']);

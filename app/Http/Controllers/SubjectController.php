@@ -34,6 +34,21 @@ class SubjectController extends Controller
         }
     }
 
+    public function get($id)
+    {
+        try{
+            $subject = Subject::findOrFail($id);
+            return response([
+                'subject' => $subject,
+                'message' => 'Subject retrieved successfully'
+            ], 200);
+        } catch (ModelNotFoundException $exception) {
+            return response([
+                'message' => 'Subject not found'
+            ], 404);
+        }
+    }
+
     public function getAll()
     {
         $subjects = Subject::all();

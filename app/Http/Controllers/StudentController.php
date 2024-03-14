@@ -36,6 +36,21 @@ class StudentController extends Controller
         }
     }
 
+    public function get($id)
+    {
+        try{
+            $student = Student::findOrFail($id);
+            return response([
+                'student' => $student,
+                'message' => 'Student retrieved successfully'
+            ], 200);
+        } catch (ModelNotFoundException $exception) {
+            return response([
+                'message' => 'Student not found'
+            ], 404);
+        }
+    }
+
     public function getAll()
     {
         $students = Student::all();
