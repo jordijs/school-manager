@@ -22,10 +22,14 @@ class Subject extends Model
         return $this->hasMany(Grade::class);
     }
 
-    public function averageGrade(): float
+    public function averageGrade()
     {
-        $average = $this->grades->avg('grade');
-        $roundedAverage = round($average, 2);
-        return $roundedAverage;
+        if ($this->grades->isEmpty()) {
+            return 'This subject has no grades yet.';
+        } else {
+            $average = $this->grades->avg('grade');
+            $roundedAverage = round($average, 2);
+            return $roundedAverage;
+        }
     }
 }
