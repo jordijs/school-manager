@@ -17,10 +17,12 @@
     <div class="flex flex-col gap-5 justify-center items-center">
         <h1 class="text-2xl font-bold">Student Manager</h1>
         <p>Please select the data to view:</p>
-        <div class="flex gap-5"> 
-            <button class="bg-slate-800 p-5 rounded-2xl shadow text-white">
-                Students
-            </button>
+        <div class="flex gap-5">
+            <a href="{{ route('students') }}">
+                <button class="bg-slate-800 p-5 rounded-2xl shadow text-white">
+                    Students
+                </button>
+            </a>
             <button class="bg-slate-800 p-5 rounded-2xl shadow text-white">
                 Subjects
             </button>
