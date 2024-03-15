@@ -102,6 +102,7 @@ class StudentsTest extends TestCase
         $response->assertJsonFragment($fakeData);
     }
 
+    // DELETE /students/{id}
     public function test_API_deletes_a_student(): void
     {
         $this->seed(StudentSeeder::class);
