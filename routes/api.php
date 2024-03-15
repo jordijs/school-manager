@@ -72,14 +72,16 @@ Usage: Send with the Body as JSON, with format:
 */
 Route::post('/subjects', [SubjectController::class, 'create']);
 
+
+// GET ALL SUBJECTS
+Route::get('/subjects', [SubjectController::class, 'getAll']);
+
 /*
 GET SUBJECT
 Usage: Send the subject ID to be retrieved as a parameter in the URL.
 */
 Route::get('/subjects/{id}', [SubjectController::class, 'get']);
 
-// GET ALL SUBJECTS
-Route::get('/subjects', [SubjectController::class, 'getAll']);
 
 //GET AVERAGE GRADE OF A SUBJECT
 Route::get('/subjects/{id}/grades/average', [SubjectController::class, 'getAverageGrade']);

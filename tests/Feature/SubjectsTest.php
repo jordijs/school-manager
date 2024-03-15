@@ -12,6 +12,7 @@ class SubjectsTest extends TestCase
 
     use RefreshDatabase;
 
+    // POST /subjects
     public function test_API_creates_a_new_subject(): void
     {
         $inputData = [
@@ -23,6 +24,7 @@ class SubjectsTest extends TestCase
         $response->assertJsonFragment($inputData);
     }
 
+    // GET /subjects
     public function test_API_returns_all_subjects(): void
     {
         $this->seed(SubjectSeeder::class);
@@ -39,6 +41,7 @@ class SubjectsTest extends TestCase
         ]);
     }
 
+    // GET /subjects/{id}
     public function test_API_returns_a_subject(): void
     {
         $this->seed(SubjectSeeder::class);
@@ -53,6 +56,19 @@ class SubjectsTest extends TestCase
         ]);
     }
 
+    // GET /subjects/{id}/grades/average
+    public function test_API_returns_average_grade_of_subject(): void
+    {
+        $this->seed();
+        $response = $this->get('/api/subjects/1/grades/average');
+        $response->assertStatus(200);
+        $response->assertJsonFragment([
+            'message' => 'Average grade retrieved successfully',
+        ]);
+        $this->assertIsFloat($response->json('average'));
+    }
+
+    // PUT /subjects/{id}
     public function test_API_updates_data_of_subject(): void
     {
         $this->seed(SubjectSeeder::class);
@@ -64,6 +80,7 @@ class SubjectsTest extends TestCase
         $response->assertJsonFragment($inputData);
     }
 
+    // DELETE /subjects/{id}
     public function test_API_deletes_a_subject(): void
     {
         $this->seed(SubjectSeeder::class);
