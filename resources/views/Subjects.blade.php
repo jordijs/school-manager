@@ -20,16 +20,18 @@
         <div class="flex gap-5">
             <div class="flex flex-col gap-5">
                 @foreach ($subjects as $subject)
-                    <button class="bg-slate-800 p-5 rounded-2xl shadow text-white">
-                        <div>
-                            <span class="font-bold">Name:</span> {{ $subject->name }}
-                        </div>
-                        <div>
-                            <span class="font-bold">School year:</span> {{ $subject->school_year }}
-                        </div>
-                    </button>
+                    <a href="{{ route('subject', $subject->id) }}">
+                        <button class="bg-slate-800 p-5 rounded-2xl shadow text-white">
+                            <div>
+                                <span class="font-bold">Name:</span> {{ $subject->name }}
+                            </div>
+                            <div>
+                                <span class="font-bold">School year:</span> {{ $subject->school_year }}
+                            </div>
+                        </button>
+                    </a>
                 @endforeach
-                </div>
+            </div>
         </div>
 </body>
 

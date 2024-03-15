@@ -14,7 +14,13 @@ class SubjectController extends Controller
         $subjects = Subject::paginate();
         return view('Subjects', compact('subjects'));
     }
-    
+
+    public function showById($id)
+    {
+        $subject = Subject::findOrFail($id);
+        return view('Subject', compact('subject'));
+    }
+
     public function create(Request $request)
     {
         try {

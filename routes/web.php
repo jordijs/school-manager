@@ -22,4 +22,5 @@ Route::get('/', function () {
 Route::get('/students', [StudentController::class, 'index'])->name('students');
 Route::get('/students/{id}', [StudentController::class, 'showById'])->name('student');
 Route::get('/subjects', [SubjectController::class, 'index'])->name('subjects');
+Route::get('/subjects/{id}', [SubjectController::class, 'showById'])->name('subject');
 
