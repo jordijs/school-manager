@@ -22,4 +22,11 @@ class Student extends Model
         return $this->hasMany(Grade::class);
     }
 
+    public function averageGrade(): float
+    {
+        $average = $this->grades->avg('grade');
+        $roundedAverage = round($average, 2);
+        return $roundedAverage;
+    }
+
 }

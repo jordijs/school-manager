@@ -15,6 +15,12 @@ class StudentController extends Controller
         return view('Students', compact('students'));
     }
 
+    public function showById($id)
+    {
+        $student = Student::findOrFail($id);
+        return view('Student', compact('student'));
+    }
+
     public function create(Request $request)
     {
         try {

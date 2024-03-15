@@ -23,12 +23,13 @@
                     Students
                 </button>
             </a>
-            <button class="bg-slate-800 p-5 rounded-2xl shadow text-white">
-                Subjects
-            </button>
+            <a href="{{ route('subjects') }}">
+                <button class="bg-slate-800 p-5 rounded-2xl shadow text-white">
+                    Subjects
+                </button>
+            </a>
         </div>
     </div>
-
 </body>
 
 </html>

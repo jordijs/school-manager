@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SubjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +20,6 @@ Route::get('/', function () {
 });
 
 Route::get('/students', [StudentController::class, 'index'])->name('students');
+Route::get('/students/{id}', [StudentController::class, 'showById'])->name('student');
+Route::get('/subjects', [SubjectController::class, 'index'])->name('subjects');
+

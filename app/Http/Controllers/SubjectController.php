@@ -9,6 +9,12 @@ use Illuminate\Validation\ValidationException;
 
 class SubjectController extends Controller
 {
+    public function index()
+    {
+        $subjects = Subject::paginate();
+        return view('Subjects', compact('subjects'));
+    }
+    
     public function create(Request $request)
     {
         try {
