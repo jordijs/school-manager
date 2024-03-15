@@ -124,6 +124,9 @@ Usage: Send the grade ID to be retrieved as a parameter in the URL.
 */
 Route::get('/grades/{id}', [GradeController::class, 'get']);
 
+//GET AVERAGE GRADE OF ALL STUDENTS
+Route::get('/students/grades/average', [GradeController::class, 'getAverage']);
+
 /*
 UPDATE DATA OF A GRADE
 Usage:  
@@ -136,9 +139,6 @@ Usage:
 }
 */
 Route::put('/grades/{id}', [GradeController::class, 'edit']);
-
-//GET AVERAGE GRADE OF ALL STUDENTS
-Route::get('/grades/average', [GradeController::class, 'getAverage']);
 
 /*
 DELETE A GRADE 

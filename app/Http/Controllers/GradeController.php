@@ -6,6 +6,7 @@ use App\Models\Grade;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use PHPUnit\Event\Exception;
 
 class GradeController extends Controller
 {
@@ -40,7 +41,7 @@ class GradeController extends Controller
 
     public function get($id)
     {
-        try{
+        try {
             $grade = Grade::findOrFail($id);
             return response([
                 'grade' => $grade,
@@ -75,8 +76,7 @@ class GradeController extends Controller
                     'grade' => 'numeric|between:0,10'
                 ]);
 
-                if ($request->student_id)
-                {
+                if ($request->student_id) {
                     $grade->student_id = $request->student_id;
                 }
                 if ($request->subject_id) {
@@ -120,17 +120,20 @@ class GradeController extends Controller
         }
     }
 
-    public function getAverage() 
+    public function getAverage()
     {
-        $average = Grade::all()->average('grade');
-
-        $roundedAverage = round($average, 2);
-
-        return response([
-            'average' => $roundedAverage,
-            'message' => 'Average retrieved successfully'
-        ], 200);
+        try {
+            $average = Grade::all()->average('grade');
+            $roundedAverage = round($average, 2);
+            return response([
+                'average' => $roundedAverage,
+                'message' => 'Average retrieved successfully'
+            ], 200);
+        } catch (Exception $exception) {
+            return response([
+                'error' => $exception->getMessage(),
+                'message' => 'Unable to get average'
+            ], 404);
+        }
     }
-
-
 }
