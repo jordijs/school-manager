@@ -115,17 +115,14 @@ Usage: Send with the Body as JSON, with format:
 */
 Route::post('/grades', [GradeController::class, 'create']);
 
+// GET ALL GRADES
+Route::get('/grades', [GradeController::class, 'getAll']);
+
 /*
 GET GRADE
 Usage: Send the grade ID to be retrieved as a parameter in the URL.
 */
 Route::get('/grades/{id}', [GradeController::class, 'get']);
-
-// GET ALL GRADES
-Route::get('/grades', [GradeController::class, 'getAll']);
-
-//GET AVERAGE GRADE OF ALL STUDENTS
-Route::get('/grades/average', [GradeController::class, 'getAverage']);
 
 /*
 UPDATE DATA OF A GRADE
@@ -139,6 +136,9 @@ Usage:
 }
 */
 Route::put('/grades/{id}', [GradeController::class, 'edit']);
+
+//GET AVERAGE GRADE OF ALL STUDENTS
+Route::get('/grades/average', [GradeController::class, 'getAverage']);
 
 /*
 DELETE A GRADE 
