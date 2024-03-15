@@ -56,6 +56,18 @@ class StudentsTest extends TestCase
         ]);
     }
 
+    public function test_API_returns_average_grade_by_student(): void
+    {
+        $this->seed();
+        $response = $this->get('/api/students/1/grades/average');
+        $response->dump();
+        $response->assertStatus(200);
+        $response->assertJsonFragment([
+            'message' => 'Average retrieved successfully'
+        ]);
+        $this->assertIsFloat($response->json('average'));
+    }
+
     public function test_API_updates_data_of_student(): void
     {
         $this->seed(StudentSeeder::class);
@@ -76,5 +88,4 @@ class StudentsTest extends TestCase
         $response->assertStatus(200);
         $response->assertJsonFragment(['message' => 'Student deleted successfully']);
     }
-
 }
