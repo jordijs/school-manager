@@ -12,6 +12,7 @@ class StudentsTest extends TestCase
 
 {
     use RefreshDatabase;
+    // POST /students
     public function test_API_creates_a_new_student(): void
     {
         $inputData = [
@@ -24,6 +25,7 @@ class StudentsTest extends TestCase
         $response->assertJsonFragment($inputData);
     }
 
+    // GET /students
     public function test_API_returns_all_students(): void
     {
         $this->seed(StudentSeeder::class);
@@ -41,6 +43,7 @@ class StudentsTest extends TestCase
         ]);
     }
 
+    // GET /students/{id}
     public function test_API_returns_a_student(): void
     {
         $this->seed(StudentSeeder::class);
@@ -56,11 +59,28 @@ class StudentsTest extends TestCase
         ]);
     }
 
+    // GET /students/{id}/grades
+    public function test_API_returns_grades_of_student(): void
+    {
+        $this->seed();
+        $response = $this->get('/api/students/1/grades');
+        $response->assertStatus(200);
+        $response->assertJsonStructure([
+            'grades' => [
+                [
+                    'id',
+                    'grade',
+                    'subject_id'
+                ]
+            ]
+        ]);
+    }
+
+    // GET /students/{id}/grades/average
     public function test_API_returns_average_grade_by_student(): void
     {
         $this->seed();
         $response = $this->get('/api/students/1/grades/average');
-        $response->dump();
         $response->assertStatus(200);
         $response->assertJsonFragment([
             'message' => 'Average retrieved successfully'
@@ -68,6 +88,7 @@ class StudentsTest extends TestCase
         $this->assertIsFloat($response->json('average'));
     }
 
+    // PUT /students/{id}
     public function test_API_updates_data_of_student(): void
     {
         $this->seed(StudentSeeder::class);
